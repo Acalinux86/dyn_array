@@ -19,12 +19,12 @@ void dump_stack(const Stack *stack)
 int main(void)
 {
     Stack stack = {0};
-    array_append(&stack, 24);
-    array_append(&stack, 25);
-    array_append(&stack, 26);
-    array_append(&stack, 27);
+    dyn_array_append(&stack, 24);
+    dyn_array_append(&stack, 25);
+    dyn_array_append(&stack, 26);
+    dyn_array_append(&stack, 27);
     dump_stack(&stack);
 
-    array_delete(&stack);
+    dyn_array_delete(&stack);
     return 0;
 }
