@@ -22,7 +22,10 @@ int main(void)
     dyn_array_append(&stack, 24);
     dyn_array_append(&stack, 25);
     dyn_array_append(&stack, 26);
-    dyn_array_append(&stack, 27);
+    dump_stack(&stack);
+
+    size_t rem = stack.count%4;
+    dyn_array_fill(&stack, 4 - rem, 0);
     dump_stack(&stack);
 
     dyn_array_delete(&stack);
