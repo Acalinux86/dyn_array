@@ -12,8 +12,7 @@
     do {                                                                \
         (dyn_array)->count = 0;                                         \
         (dyn_array)->capacity = DYN_ARRAY_INITIAL_CAPACITY;             \
-        (dyn_array)->contents = malloc(                                 \
-            sizeof(*(dyn_array)->contents)*(dyn_array)->capacity);      \
+        (dyn_array)->contents = malloc((dyn_array)->capacity);          \
         assert((dyn_array)->contents != NULL &&                         \
                "Memory Allocation For Dynamic Array Contents Failed");  \
     } while (0)
@@ -61,7 +60,7 @@
             (dyn_array)->contents =                                     \
                 realloc(                                                \
                     (dyn_array)->contents,                              \
-                    sizeof((dyn_array)->contents)*((dyn_array)->capacity)); \
+                    sizeof(*(dyn_array)->contents)*((dyn_array)->capacity)); \
             /* Check if The Reallocation pointer is not NULL */         \
             if ((dyn_array)->contents == NULL ) {                       \
                 fprintf(stderr, "ERROR: Memory Reallocation For Dynamic Array Failed."); \
@@ -90,6 +89,9 @@
 // NOTE: Append An Content in the end
 #define dyn_array_append(dyn_array, content) \
     dyn_array_push((dyn_array), content, (dyn_array)->count)
+
+// NOTE: Clear An Dynamic Array
+#define dyn_array_clear(dyn_array) ((dyn_array)->count = 0)
 
 // NOTE: Destroy the Dynamic Array
 #define dyn_array_delete(dyn_array)             \
